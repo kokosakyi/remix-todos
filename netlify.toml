@@ -13,6 +13,6 @@
 # Handle all routes through the Remix server function
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/remix-server"
+  to = "/.netlify/functions/server"
   status = 200
   force = true 
