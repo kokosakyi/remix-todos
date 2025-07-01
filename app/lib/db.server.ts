@@ -18,7 +18,13 @@ if (process.env.NODE_ENV === "production") {
     global.__db__ = new PrismaClient();
   }
   db = global.__db__;
-  db.$connect();
+}
+
+// Only connect if we're not in a build environment
+if (process.env.NODE_ENV !== "production" && typeof window === "undefined") {
+  db.$connect().catch((error) => {
+    console.error("Failed to connect to database:", error);
+  });
 }
 
 export { db }; 
